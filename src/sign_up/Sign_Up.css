@@ -1,0 +1,156 @@
+* {
+  font-family: "Josefin Sans", sans-serif;
+}
+.container {
+  max-width: 280px;
+  margin: 5% auto;
+  padding: 40px;
+  background-color: #b9e5e83a;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.075);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for the password visibility icon */
+.password-visibility {
+  position: relative;
+  top: -39px;
+  left: 92%;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+/* Styles for the grid layout of the signup form */
+.signup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* Styles for the main signup text */
+.signup-text {
+  margin-top: 30px;
+  grid-column: 1 / 4;
+  text-align: center;
+}
+
+/* Styles for additional signup text */
+.signup-text1 {
+  grid-column: 1 / 4;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.signup-text1 a {
+  color: #4a628a;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-text1 span {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+span:hover {
+  text-decoration: underline;
+}
+
+/* Styles for the signup form section */
+.signup-form {
+  grid-column: 1/4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+/* Styles for the overall signup container */
+.signup {
+  flex: 1;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the signup heading */
+.signup h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #4a628a;
+  letter-spacing: 0.1em;
+}
+
+/* Styles for the role text in signup */
+.signup-role {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Styles for form groups in the signup form */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Styles for form controls in the signup form */
+select.form-control {
+  background-color: white;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-control {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Styles for button group in the signup form */
+.btn-group {
+  margin-top: 0.0001px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Styles for buttons in the signup form */
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Styles for primary button in the signup form */
+.btn-primary {
+  margin-top: 10px;
+  background-color: #4a628a;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #3c5071;
+}

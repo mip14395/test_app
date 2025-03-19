@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <!--Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./Sign_Up.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="signup-grid">
+        <div class="signup-text">
+          <h1>Sign Up</h1>
+        </div>
+        <div class="signup-text1">
+          Already a member?
+          <span><a href="../Login/Login.html"> Login</a></span>
+        </div>
+        <div class="signup-form">
+          <form>
+            <div class="form-group">
+              <label for="role">Role</label>
+              <select id="role" class="form-control">
+                <option value="Select role">Select role</option>
+                <option value="doctor">Doctor</option>
+                <option value="patient">Patient</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                class="form-control"
+                placeholder="Enter your name"
+                aria-describedby="helpId"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input
+                type="tel"
+                name="phone"
+                id="phone"
+                required
+                class="form-control"
+                placeholder="Enter your phone number"
+                aria-describedby="helpId"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                class="form-control"
+                placeholder="Enter your email"
+                aria-describedby="helpId"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                name="password"
+                id="password"
+                required
+                class="form-control"
+                placeholder="Enter your password"
+                aria-describedby="helpId"
+              />
+            </div>
+
+            <div class="btn-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
