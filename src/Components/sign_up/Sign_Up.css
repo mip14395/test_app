@@ -1,10 +1,9 @@
 * {
   font-family: "Josefin Sans", sans-serif;
 }
-.container {
+.container-s {
   max-width: 280px;
   margin: 5% auto;
-  padding: 40px;
   background-color: #b9e5e83a;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.075);
@@ -50,16 +49,11 @@
 .signup-text1 a {
   color: #4a628a;
   text-decoration: none;
-  font-weight: bold;
 }
 
 .signup-text1 span {
   font-weight: 600;
   cursor: pointer;
-}
-
-span:hover {
-  text-decoration: underline;
 }
 
 /* Styles for the signup form section */
@@ -70,11 +64,10 @@ span:hover {
   align-items: center;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.signup-form form {
+  width: 240px;
 }
+
 /* Styles for the overall signup container */
 .signup {
   flex: 1;
@@ -134,6 +127,7 @@ select.form-control {
   margin-top: 0.0001px;
   margin-bottom: 20px;
   text-align: center;
+  margin-bottom: 60px;
 }
 
 /* Styles for buttons in the signup form */
@@ -147,10 +141,17 @@ select.form-control {
 
 /* Styles for primary button in the signup form */
 .btn-primary {
-  margin-top: 10px;
+  margin-top: 50px;
   background-color: #4a628a;
   color: #fff;
 }
 .btn-primary:hover {
   background-color: #3c5071;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 10px;
+  display: block;
 }

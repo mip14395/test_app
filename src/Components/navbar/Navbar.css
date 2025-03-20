@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -46,16 +48,27 @@
   font-size: 20px;
   font-weight: 400;
 }
-
+.button-a {
+  display: flex;
+  gap: 10px;
+}
 .sign-up-btn,
 .login-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 25px;
+  padding: 12px 24px;
   border: 1px solid #4a628a;
   border-radius: 50px;
   text-decoration: none;
   color: #4a628a;
   font-size: 20px;
+}
+
+.sign-up-btn:hover,
+.login-btn:hover {
+  transform: scale(0.98);
+  transition: transform 0.2s ease-in-out;
+  color: white;
+  background-color: #4a628a;
 }

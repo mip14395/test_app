@@ -1,12 +1,14 @@
 * {
   font-family: "Josefin Sans", sans-serif;
 }
-.container {
+.container-l {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  margin-top: 10%;
 }
 
 .login-box {
@@ -27,16 +29,12 @@ h2 {
 p {
   font-size: 14px;
   color: #555;
+  margin-bottom: 20px;
 }
 
 a {
   color: #4a628a;
   text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 .form-group {
@@ -88,4 +86,10 @@ label {
   text-decoration: none;
   margin-top: 10px;
   font-size: 14px;
+}
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 10px;
+  display: block;
 }
