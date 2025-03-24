@@ -155,3 +155,15 @@ select.form-control {
   margin-top: 10px;
   display: block;
 }
+
+.success-message {
+  color: green;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-top: 20px;
+}

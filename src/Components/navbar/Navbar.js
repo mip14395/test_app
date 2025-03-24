@@ -5,6 +5,7 @@ import logo from "../../asset/image/logo.png";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const email = sessionStorage.getItem("email");
 
   useEffect(() => {
     const token = sessionStorage.getItem("auth-token");
@@ -37,7 +38,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/appointments">
+            <Link className="nav-link" to="/instant-consultation">
               Appointments
             </Link>
           </li>
@@ -56,9 +57,12 @@ const Navbar = () => {
 
       <div className="button-a">
         {isLoggedIn ? (
-          <button onClick={handleLogout} className="logout-btn">
-            Logout
-          </button>
+          <div className="user-info">
+            Welcome, <span>{email?.split("@")[0]}</span>
+            <button onClick={handleLogout} className="logout-btn">
+              Logout
+            </button>
+          </div>
         ) : (
           <>
             <Link to="/signup" className="sign-up-btn">

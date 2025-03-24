@@ -1,39 +1,58 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
-  // State lưu trữ email, password và lỗi
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  // Xử lý khi form được submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setServerError("");
+    setLoading(true);
 
     let validationErrors = {};
-
     if (!email.trim()) {
       validationErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       validationErrors.email = "Email is invalid";
     }
-
     if (!password.trim()) {
       validationErrors.password = "Password is required";
     } else if (password.length < 6) {
       validationErrors.password = "Password must be at least 6 characters";
     }
 
-    // Nếu có lỗi, cập nhật state
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-    } else {
-      setErrors({});
-      console.log("Login successful", { email, password });
-      alert("Login Successful!");
+      setLoading(false);
+      return;
     }
+
+    try {
+      const response = await fetch("http://localhost:3001/users");
+      const users = await response.json();
+      const user = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if (user) {
+        sessionStorage.setItem("auth-token", user.id);
+        sessionStorage.setItem("email", user.email);
+        navigate("/");
+        window.location.reload();
+      } else {
+        setServerError("Email or password is wrong!");
+      }
+    } catch (error) {
+      setServerError("Something went wrong. Please try again.");
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -68,9 +87,13 @@ const Login = () => {
             />
             {errors.password && <p className="error-text">{errors.password}</p>}
           </div>
-          <button type="submit" className="btn">
-            Login
+
+          {serverError && <p className="error-text">{serverError}</p>}
+
+          <button type="submit" className="btn" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
           </button>
+
           <p className="forgot-password">
             <Link to="/"> Forgot Password?</Link>
           </p>

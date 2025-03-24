@@ -52,12 +52,22 @@
   display: flex;
   gap: 10px;
 }
+
+.user-info {
+  text-align: center;
+  width: 100%;
+}
+
 .sign-up-btn,
-.login-btn {
+.login-btn,
+.logout-btn {
+  position: relative;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 12px 24px;
+  background-color: white;
   border: 1px solid #4a628a;
   border-radius: 50px;
   text-decoration: none;
@@ -66,7 +76,8 @@
 }
 
 .sign-up-btn:hover,
-.login-btn:hover {
+.login-btn:hover,
+.logout-btn:hover {
   transform: scale(0.98);
   transition: transform 0.2s ease-in-out;
   color: white;

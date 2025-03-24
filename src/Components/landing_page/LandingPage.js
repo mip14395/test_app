@@ -22,7 +22,7 @@ const LandingPage = () => {
             seamless appointment booking.
           </h4>
           <div className="button-container">
-            <Link to="/services">
+            <Link to="/service">
               <button className="button">Get Started</button>
             </Link>
           </div>

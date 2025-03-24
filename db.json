@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "99f9",
+      "role": "admin",
+      "name": "Q",
+      "phone": "0123456789",
+      "email": "tarolucifer@gmail.com",
+      "password": "123123"
+    },
+    {
+      "id": "6cd2",
+      "role": "admin",
+      "name": "page",
+      "phone": "0123456789",
+      "email": "thtrang14395@gmail.com",
+      "password": "123123"
+    },
+    {
+      "id": "6dfd",
+      "role": "patient",
+      "name": "page",
+      "phone": "0123456789",
+      "email": "qhlong.aqua@gmail.com",
+      "password": "123123"
+    },
+    {
+      "id": "f1e1",
+      "role": "patient",
+      "name": "page",
+      "phone": "0123456789",
+      "email": "qthaotrang0905@gmail.com",
+      "password": "123123"
+    }
+  ]
+}

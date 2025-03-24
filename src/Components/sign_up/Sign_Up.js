@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Sign_Up.css";
-import { API_URL } from "../../config";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +13,14 @@ const SignUp = () => {
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [e.target.name]: "",
+    }));
   };
 
   const validate = () => {
@@ -40,23 +44,35 @@ const SignUp = () => {
     if (!validate()) return;
 
     try {
-      const response = await fetch(`${API_URL}/api/auth/register`, {
+      const checkEmailResponse = await fetch(
+        `http://localhost:3001/users?email=${formData.email}`
+      );
+      const existingUsers = await checkEmailResponse.json();
+
+      if (existingUsers.length > 0) {
+        setServerError("Email already exists. Please use a different email.");
+        return;
+      }
+
+      const response = await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-      if (data.authtoken) {
-        sessionStorage.setItem("auth-token", data.authtoken);
-        sessionStorage.setItem("name", formData.name);
-        sessionStorage.setItem("phone", formData.phone);
-        sessionStorage.setItem("email", formData.email);
-        sessionStorage.setItem("role", formData.role);
-        navigate("/");
-        window.location.reload();
+      if (response.ok) {
+        setSuccessMessage("Registration successful! Redirecting...");
+        setTimeout(() => {
+          sessionStorage.setItem("name", formData.name);
+          sessionStorage.setItem("phone", formData.phone);
+          sessionStorage.setItem("email", formData.email);
+          sessionStorage.setItem("role", formData.role);
+          navigate("/");
+          window.location.reload();
+        }, 2000);
       } else {
-        setServerError(data.error || "Registration failed. Try again.");
+        setServerError("Registration failed. Try again.");
       }
     } catch (error) {
       setServerError("Something went wrong. Please try again.");
@@ -83,6 +99,7 @@ const SignUp = () => {
                 id="role"
                 name="role"
                 className="form-control"
+                value={formData.role}
                 onChange={handleChange}
               >
                 <option value="Select role">Select role</option>
@@ -144,6 +161,9 @@ const SignUp = () => {
             </div>
 
             {serverError && <div className="error-message">{serverError}</div>}
+            {successMessage && (
+              <div className="success-message">{successMessage}</div>
+            )}
 
             <div className="btn-group">
               <button type="submit" className="btn btn-primary">
