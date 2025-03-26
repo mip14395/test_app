@@ -1,0 +1,33 @@
+.reports-container {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.reports-table th,
+.reports-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.reports-table th {
+  background-color: #f4f4f4;
+}
+
+button {
+  background-color: #7ab2d3;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5a839b;
+}

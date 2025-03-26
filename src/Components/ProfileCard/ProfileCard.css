@@ -1,0 +1,59 @@
+.profile-container {
+  max-width: 400px;
+  margin: 100px auto 0;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 1000;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.profile-form label {
+  text-align: left;
+  font-weight: bold;
+}
+
+.profile-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background: #7ab2d3;
+  color: white;
+}
+
+button[type="button"] {
+  background: #9c9c9c;
+}
+button[type="button"]:hover {
+  background-color: #666666;
+}

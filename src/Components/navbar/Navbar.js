@@ -1,26 +1,25 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ProfileCard from "../ProfileCard/ProfileCard";
 import "./Navbar.css";
 import logo from "../../asset/image/logo.png";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const email = sessionStorage.getItem("email");
 
   useEffect(() => {
     const token = sessionStorage.getItem("auth-token");
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleLogout = () => {
     sessionStorage.removeItem("auth-token");
     sessionStorage.removeItem("email");
     setIsLoggedIn(false);
-    window.location.reload(); // Load lại trang để cập nhật trạng thái
+    window.location.reload();
   };
 
   return (
@@ -33,12 +32,12 @@ const Navbar = () => {
       <nav id="navbar">
         <ul className="d-flex list-unstyled align-items-center mb-0">
           <li>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/service">
               Home
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/instant-consultation">
+            <Link className="nav-link" to="/appointment">
               Appointments
             </Link>
           </li>
@@ -58,7 +57,24 @@ const Navbar = () => {
       <div className="button-a">
         {isLoggedIn ? (
           <div className="user-info">
-            Welcome, <span>{email?.split("@")[0]}</span>
+            <span
+              className="welcome-text"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              Welcome, {email?.split("@")[0]}
+            </span>
+
+            {showDropdown && (
+              <div className="dropdown-menu">
+                <Link to="/profile" onClick={() => setShowDropdown(false)}>
+                  Your Profile
+                </Link>
+                <p>
+                  <Link to="/reports">Your Reports</Link>
+                </p>
+              </div>
+            )}
+
             <button onClick={handleLogout} className="logout-btn">
               Logout
             </button>
@@ -74,6 +90,10 @@ const Navbar = () => {
           </>
         )}
       </div>
+
+      {showProfileModal && (
+        <ProfileCard closeProfile={() => setShowProfileModal(false)} />
+      )}
     </header>
   );
 };

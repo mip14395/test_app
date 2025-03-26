@@ -27,10 +27,36 @@
     {
       "id": "f1e1",
       "role": "patient",
-      "name": "page",
+      "name": "tag",
       "phone": "0123456789",
       "email": "qthaotrang0905@gmail.com",
       "password": "123123"
+    },
+    {
+      "id": "4026",
+      "role": "patient",
+      "name": "Page",
+      "phone": "0123456789",
+      "email": "123@gmail.com",
+      "password": "123123"
     }
-  ]
+  ],
+  "appointmentsIC": [
+    {
+      "id": "dfb3afab-0454-4481-95a4-c4dbaba58978",
+      "doctorName": "Dr. Denis Raj",
+      "speciality": "Dentist",
+      "name": "page",
+      "phoneNumber": "0923247441"
+    },
+    {
+      "id": "c1f8d677-c2bf-4337-8d19-70cf855909ec",
+      "doctorName": "Dr. Samantha Turner",
+      "speciality": "Gynecologist/Obstetrician",
+      "name": "page",
+      "phoneNumber": "0923247441"
+    }
+  ],
+  "appointments": [],
+  "reviews": []
 }

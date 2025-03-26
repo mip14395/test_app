@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import "./Service.css";
 import instantConsultation from "../../asset/image/instant_consultation.jpg";
 import bookAppointment from "../../asset/image/book_appointment.jpg";

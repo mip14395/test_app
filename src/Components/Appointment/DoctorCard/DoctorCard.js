@@ -1,39 +1,44 @@
 import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import "./DoctorCardIC.css";
-import AppointmentFormIC from "../AppointmentFormIC/AppointmentFormIC";
+import "./DoctorCard.css";
+import AppointmentForm from "../AppointmentForm/AppointmentForm";
 import { v4 as uuidv4 } from "uuid";
 
-const DoctorCardIC = ({ name, speciality, experience, ratings }) => {
+const DoctorCard = ({ name, speciality, experience, ratings }) => {
   const [showModal, setShowModal] = useState(false);
   const [appointments, setAppointments] = useState([]);
+  const storedEmail = sessionStorage.getItem("email");
 
   useEffect(() => {
-    fetch("http://localhost:3001/appointmentsIC")
+    fetch("http://localhost:3001/appointments")
       .then((res) => res.json())
       .then((data) => {
         const doctorAppointments = data.filter(
-          (appt) => appt.doctorName === name
+          (appointment) => appointment.doctorName === name
         );
         setAppointments(doctorAppointments);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error("Error fetching appointments:", err));
   }, [name]);
 
-  const handleBooking = (appointmentData) => {
+  const handleFormSubmit = (appointmentData) => {
     const newAppointment = {
       id: uuidv4(),
       doctorName: name,
-      speciality,
+      doctorSpeciality: speciality,
       ...appointmentData,
+      email: storedEmail,
     };
 
-    fetch("http://localhost:3001/appointmentsIC", {
+    fetch("http://localhost:3001/appointments", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(newAppointment),
     })
+      .then((res) => res.json())
       .then(() => {
         setAppointments([...appointments, newAppointment]);
         setShowModal(false);
@@ -42,13 +47,13 @@ const DoctorCardIC = ({ name, speciality, experience, ratings }) => {
   };
 
   const handleCancel = (appointmentId) => {
-    fetch(`http://localhost:3001/appointmentsIC/${appointmentId}`, {
+    fetch(`http://localhost:3001/appointments/${appointmentId}`, {
       method: "DELETE",
     })
       .then(() => {
-        setAppointments(
-          appointments.filter((appt) => appt.id !== appointmentId)
-        );
+        setAppointments(appointments.filter((a) => a.id !== appointmentId));
+        sessionStorage.removeItem("userAppointment");
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -82,7 +87,6 @@ const DoctorCardIC = ({ name, speciality, experience, ratings }) => {
 
       <div className="doctor-card-options-container">
         <Popup
-          style={{ backgroundColor: "#FFFFFF" }}
           trigger={
             <button
               className={`book-appointment-btn ${
@@ -99,10 +103,7 @@ const DoctorCardIC = ({ name, speciality, experience, ratings }) => {
           onClose={() => setShowModal(false)}
         >
           {(close) => (
-            <div
-              className="doctorbg"
-              style={{ height: "100vh", overflow: "scroll" }}
-            >
+            <div className="doctorbg" style={{ overflow: "scroll" }}>
               <div>
                 <div className="doctor-card-profile-image-container">
                   <svg
@@ -137,6 +138,8 @@ const DoctorCardIC = ({ name, speciality, experience, ratings }) => {
                     <div className="bookedInfo" key={appointment.id}>
                       <p>Name: {appointment.name}</p>
                       <p>Phone Number: {appointment.phoneNumber}</p>
+                      <p>Date of Appointment: {appointment.date}</p>
+                      <p>Time Slot: {appointment.selectedSlot}</p>
                       <button onClick={() => handleCancel(appointment.id)}>
                         Cancel Appointment
                       </button>
@@ -144,10 +147,10 @@ const DoctorCardIC = ({ name, speciality, experience, ratings }) => {
                   ))}
                 </>
               ) : (
-                <AppointmentFormIC
+                <AppointmentForm
                   doctorName={name}
                   doctorSpeciality={speciality}
-                  onSubmit={handleBooking}
+                  onSubmit={handleFormSubmit}
                 />
               )}
             </div>
@@ -158,4 +161,4 @@ const DoctorCardIC = ({ name, speciality, experience, ratings }) => {
   );
 };
 
-export default DoctorCardIC;
+export default DoctorCard;
